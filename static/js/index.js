@@ -15,6 +15,10 @@ $( document ).ready(function() {
     setTimeout(() => {   
         $(".tweeter").fadeIn(4000);
 }, 2500);
+
+$('.cookie-banner .button').click(function(){
+    $('#cookie-banner').removeClass('show');
+  });
     
     setTimeout(() => {   
         $(".container2").scrollTop(85);
