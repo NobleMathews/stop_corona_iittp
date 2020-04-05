@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+  <title>InfodemicPeriod</title>
+  <meta charset="UTF-8">
+   <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================
+  <link rel="icon" type="image/png" href="static/static/images/icons/cat.png"/>
+===============================================================================================
+  <link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.min.css">
+===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================
+  <link rel="stylesheet" type="text/css" href="static/vendor/animate/animate.css">
+===============================================================================================
+  <link rel="stylesheet" type="text/css" href="static/vendor/select2/select2.min.css">
+===============================================================================================
+  <link rel="stylesheet" type="text/css" href="static/vendor/perfect-scrollbar/perfect-scrollbar.css">
+===============================================================================================-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="static/css/index.css">
+<!--===============================================================================================-->
+</head>
+
+<body>
+<div class="blur"></div>
+<div class="tweeter">
+  <!-- data-height="500"  -->
+ <a class="twitter-timeline" data-lang="en" data-width="250" data-height="1080" data-dnt="true" data-theme="dark" href="https://twitter.com/Noble86873031/lists/spam?ref_src=twsrc%5Etfw" data-chrome="transparent noscrollbar">A Twitter List by Noble</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+ <img  src="static/images/icon_i_h.png" alt="InfodemicPeriod" class="center selectDisable">
+<div class="wrap">
+	<form class="search" action="/">
+       <input type="text" class="searchTerm" placeholder="Please input entire message recieved ..." name="chat_in" autofocus="autofocus" value="{{x_input}}" maxlength="500" id="rcorners2">
+       <button type="submit" class="searchButton" method="get">
+         <i class="fa fa-search"></i>
+      </button>
+	</form>
+ </div>
+ <script>
+   try {
+    setTimeout(() => {   
+        $(".container2").scrollTop(85);
+
+    var str = "{{chat_in}}";
+    if(str.length>5){
+      
+      var per=0+parseInt("{{ (100 * prediction[0]['prob']) | round}}");
+      if(per>35){
+        $(".form-popup").fadeIn(1000);
+        $(".blur").fadeIn(2000);
+      }
+      else{
+        $(".container2").scrollTop(85);
+        $(".toggle").click();
+      }
+   }
+  }, 1500);
+}
+catch(err) {
+}
+
+
+ </script>
+
+ <div class="footer">
+  <div class="wrap-collabsible">
+    <input id="collapsible" class="toggle" type="checkbox">
+    <label for="collapsible" class="lbl-toggle" tabindex="0"> ... <strong>No Lies</strong> under these <strong>Beautiful Skies</strong> ... </label>
+    <div class="collapsible-content">
+      <div class="content-inner">
+        <div class="hold" style="width:200px;display:inline-block;">
+          <canvas id="ch1" height="200" display="inline-block"></canvas>
+          <p style="text-align: center; color:#e6e6ea"><strong> Truth Score: MachineLearning Classifier</strong></p>
+        </div>
+        <div style="width:200px; height:200px; display:inline-block;">
+		      <div class="container2">
+      <script>
+        var str="{{url}}";
+        str=str.replace(/@/g, "\"");
+        // console.log(str);
+        // strArr=str.split(',');
+        // var i;
+        var arr = JSON.parse("[" + str + "]");
+        // console.log(arr);
+        // for (i = 0; i < strArr.length; i++) {
+        //   resa.push(JSON.parse(strArr[i]));
+        // }
+        // console.log(resa);
+      </script>
+      <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/2152_RC02/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":arr,"category":0,"property":""}, {"exploreQuery":"date=today%2012-m&geo=IN&q={{results}}","guestPath":"https://trends.google.com:443/trends/embed/"}); </script> 
+      
+    	<!-- <div class="alert alert-success" role="alert">
+        <p>Identified Subjects include :</p>
+        <ul>{% for i in results %}
+        	<li>{{i}}</li>
+          {%endfor %} -->
+        <!-- <a href={{url}} target="_blank">Unable to connect to API please click to check.</a> -->
+    	<!-- </ul> -->
+      </div>
+      <p style="text-align: center; color:#e6e6ea"><strong>Realtime Relevance</strong></p></div>
+      <div class="hold" style="width:200px;display:inline-block;">
+        <canvas id="ch3" width="200" height="200" display="inline-block" ></canvas>
+        <p style="text-align: center; color:#e6e6ea"><strong> Links Security Rating: (if any)</strong></p>
+      </div>
+      <div class="hold" style="width:250px; max-height:200px; display:inline-block; vertical-align: top; padding-top:50px">
+        <a href={{gurl}} target="_blank"><button class="btn draw-border">Until API key is authorised please click here for Secondary auto check</button></a>
+        <!-- <a href={{gurl}} target="_blank" class="btn btn-2">Until API key is authorised please click here for Secondary auto check</a> -->
+      </div>
+      <div class="hold" style="width:150px; max-height:200px; display:inline-block; vertical-align: top; padding-top:50px">
+        <button href="#" target="_blank" class="btnx first"><i class="fa fa-exclamation-triangle fa-3x"></i>Report as spam</button>
+      <!-- <a href={{gurl}} target="_blank" class="btn btn-2">Until API key is authorised please click here for Secondary auto check</a> -->
+    </div>
+      
+    </div>
+      </div>
+    </div>
+  </div>
+ </div>
+ <div class="form-popup" id="myForm">
+  <form class="form-container">
+    <h4>This message has been flagged red</h4>
+    <img id="sad_im" src="static/images/bear.gif" height="100" width="100"/>  
+    <p id="why"> Fake news makes teddy sad... </p>
+  </br>
+    <script>
+      function closeForm() {
+        event.preventDefault();
+        document.getElementById("myForm").style.display = "none";
+        $(".form-popup").fadeOut(500);
+        $(".blur").fadeOut(1000);
+        $(".container2").scrollTop(85);
+        $(".toggle").click();
+      } 
+      function disForm() {
+        event.preventDefault();
+        if($("#why").text()=="Spam and irrelevant forwards makes pudding loose her way ...")
+        closeForm();
+        $("#sad_im").attr("src","static/images/cat.gif");
+        $("#why").text("Spam and irrelevant forwards makes pudding loose her way ...");
+
+      } 
+    </script>
+    <button class="btna" onclick="disForm()">Forward anyways</button>
+    <button class="btna cancel" onclick="closeForm()">I'll manually check</button>
+  </form>
+</div>
+
+<!--===============================================================================================-->
+  <script src="static/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================
+  <script src="static/vendor/bootstrap/js/popper.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+===============================================================================================
+  <script src="static/vendor/select2/select2.min.js"></script>
+===============================================================================================-->
+  <script src="static/js/index.js"></script>
+<script>
+$(document).ready(function () {
+  Chart.defaults.global.defaultFontColor = 'white';  
+  var ctx = document.getElementById('ch1').getContext('2d');
+  data = {
+      datasets: [{
+          data: [{{ (100 * prediction[0]['prob']) | round}},100-{{ (100 * prediction[0]['prob']) | round}}],
+          backgroundColor : [
+              "red", "#6bb7c7"
+            ],
+            borderColor : [
+              "#111", "#111"
+            ],
+            borderWidth : 3
+      }],
+      // These labels appear in the legend and in the tooltips when hovering different arcs
+      labels: [
+          'Fake / Spam',
+          'Probably Not'
+      ]
+  };
+  ctx.canvas.width = 200;
+  ctx.canvas.height = 200;
+  var myDoughnutChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: data,
+      // options: options
+  });
+  var ctx = document.getElementById('ch3').getContext('2d');
+  data = {
+      datasets: [{
+          data: [{{ (10 * score) | round}},100-{{ (10 * score) | round}}],
+          backgroundColor : [
+              "green", "#F0E68C"
+            ],
+            borderColor : [
+              "#111", "#111"
+            ],
+            borderWidth : 3
+      }],
+      // These labels appear in the legend and in the tooltips when hovering different arcs
+      labels: [
+          'Secure Website',
+          'Protection Low'
+      ]
+  };
+  ctx.canvas.width = 200;
+  ctx.canvas.height = 200;
+  var myDoughnutChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: data,
+      // options: options
+  });
+// <!-- const source = new EventSource("/chart-data"); -->
+
+//         <!-- source.onmessage = function (event) { -->
+//             <!-- const data = JSON.parse(event.data); -->
+//             <!-- if (config.data.labels.length === 20) { -->
+//                 <!-- config.data.labels.shift(); -->
+//                 <!-- config.data.datasets[0].data.shift(); -->
+//             <!-- } -->
+//             <!-- config.data.labels.push(data.time); -->
+//             <!-- config.data.datasets[0].data.push(data.value); -->
+//             <!-- lineChart.update(); -->
+//         <!-- } -->
+    });
+</script>
+</body>
+</html>

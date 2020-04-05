@@ -1,0 +1,7 @@
+flask
+gunicorn
+numpy
+scikit-learn
+spacy
+requests
+re
