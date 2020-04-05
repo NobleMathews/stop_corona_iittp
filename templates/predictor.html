@@ -28,7 +28,7 @@
 </div>
  <img  src="static/images/icon_i_h.png" alt="InfodemicPeriod" class="center selectDisable">
 <div class="wrap">
-  <div class="heading">
+  <div class="heading" style="padding:5px; text-shadow: 2px 2px 8px #000;">
     <div class="heading__container">
       <p class="heading__container__text">
         Putting an end to the
@@ -58,6 +58,8 @@
     if(str.length>5){
       
       var per=0+parseInt("{{ (100 * prediction[0]['prob']) | round}}");
+      $('#cookie-banner').removeClass();
+
       if(per>35){
         $(".form-popup").fadeIn(1000);
         $(".blur").fadeIn(2000);
@@ -65,7 +67,17 @@
       else{
         $(".container2").scrollTop(85);
         $(".toggle").click();
+        
       }
+   }
+   else{
+    $('#cookie-banner').removeClass();
+    $('#cookie-banner').addClass('cookie-banner');
+    $('#cookie-banner').addClass('full');
+    $('#cookie-banner').addClass('bottom');
+    setTimeout(function(){
+      $('#cookie-banner').addClass('show');
+    }, 100);
    }
   }, 1500);
 }
@@ -198,5 +210,12 @@ $(document).ready(function () {
   });
     });
 </script>
+<div class="banner-wrapper">
+  <div id="cookie-banner" class="cookie-banner">
+    <p><strong>Disclaimer:</strong></br> This website is still under development the results displayed by the website may or may not be reliable <br />The author is not responsible for any damages, Please use the data from this website at your own risk. Giving all credits where credit's due. 
+    </br> To report any issues please <a href="mailto:noblesajimathews@gmail.com"><em>click here</em></a>.</p>
+    <a class="button" href="#">OK</a>
+  </div>
+</div>
 </body>
 </html>
