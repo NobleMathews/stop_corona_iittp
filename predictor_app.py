@@ -63,6 +63,7 @@ def predict():
             score=0
         queri=""
         querf=""
+        gurl="https://toolbox.google.com/factcheck/explorer/search"
         if len(sub_toks)!=0:
             gurl="https://toolbox.google.com/factcheck/explorer/search/"+str("%20".join(sub_toks))+";hl=en"
             queri="{@keyword@:@"+str(sub_toks[0])+"@,@geo@:@IN@,@time@:@today 12-m@}"
