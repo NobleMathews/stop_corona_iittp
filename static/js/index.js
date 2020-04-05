@@ -12,6 +12,17 @@
 // });
 
 $( document ).ready(function() {
+
+    if (!$.cookie("maCookie")) {
+        $('#cookie-banner').removeClass();
+        $('#cookie-banner').addClass('cookie-banner');
+        $('#cookie-banner').addClass('full');
+        $('#cookie-banner').addClass('bottom');
+        setTimeout(function(){
+          $('#cookie-banner').addClass('show');
+        }, 100);
+    }
+    $.cookie("maCookie", "Noble:Hi");
     setTimeout(() => {   
         $(".tweeter").fadeIn(4000);
 }, 2500);
