@@ -13,6 +13,7 @@
   <link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="static/css/index.css">
+  <script src="https://apis.google.com/js/api.js"></script>
 </head>
 
 <body>
@@ -104,8 +105,73 @@ catch(err) {
         <canvas id="ch3" width="200" height="200" display="inline-block" ></canvas>
         <p style="text-align: center; color:#e6e6ea"><strong> Links Security Rating: (if any)</strong></p>
       </div>
-      <div class="hold" style="width:250px; max-height:200px; display:inline-block; vertical-align: top; padding-top:50px">
-        <a href={{gurl}} target="_blank"><button class="btn draw-border">Until API key is authorised please click here for Secondary check</button></a>
+      <script>
+        /**
+         * Sample JavaScript code for factchecktools.claims.search
+         * See instructions for running APIs Explorer code samples locally:
+         * https://developers.google.com/explorer-help/guides/code_samples#javascript
+         */
+         var mountains = [];
+         function execute() {
+          return gapi.client.factchecktools.claims.search({
+            "query": "{{gurl}}"
+          })
+              .then(function(response) {
+                      // Handle the results here (response.result has the parsed body).
+                      for(var i = 0; i < response.result['claims'].length; i++) {                    
+                      mountains.push({"Claim":response.result['claims'][i].text,"Score":response.result['claims'][i]['claimReview'][0]["textualRating"]=="Pants on Fire"?"Lie":response.result['claims'][i]['claimReview'][0]["textualRating"]});
+                      }
+                      let table = document.querySelector("table");
+                      let data = Object.keys(mountains[0]);
+                      generateTableHead(table, data);
+                      generateTable(table, mountains);
+                    },
+                    function(err) { console.error("Execute error", err); });
+        }
+      
+        function loadClient() {
+          gapi.client.setApiKey("AIzaSyAhjHWo-CQ4ptmnj1XcuF3Spaoxrk7yhxk");
+          return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/factchecktools/v1alpha1/rest")
+              .then(function() { console.log("GAPI client loaded for API"); 
+                                  execute()},
+                    function(err) { console.error("Error loading GAPI client for API", err); });
+        }
+        // Make sure the client is loaded before calling this method.
+
+        gapi.load("client");
+
+            function generateTableHead(table, data) {
+              let thead = table.createTHead();
+              let row = thead.insertRow();
+              for (let key of data) {
+                let th = document.createElement("th");
+                let text = document.createTextNode(key);
+                th.appendChild(text);
+                row.appendChild(th);
+              }
+            }
+
+            function generateTable(table, data) {
+              for (let element of data) {
+                let row = table.insertRow();
+                for (key in element) {
+                  let cell = row.insertCell();
+                  let text = document.createTextNode(element[key]);
+                  cell.appendChild(text);
+                }
+              }
+            }
+            $( document ).ready(function() {
+              loadClient();
+            })
+      </script>
+      <div class="hold" style="width:250px; max-height:300px; display:inline-block; vertical-align: top; padding-top:2px; overflow:auto">
+        <!-- <a href={{gurl}} target="_blank"><button class="btn draw-border" onclick="loadClient()">Until API key is authorised please click here for Secondary check</button></a> -->
+        <button class="btn draw-border" onclick="loadClient()">NLP: Querer</button>
+        <div class="tbl-header">
+          <table cellpadding="0" cellspacing="0" border="0">
+          </table>
+        </div>
         <!-- <a href={{gurl}} target="_blank" class="btn btn-2">Until API key is authorised please click here for Secondary auto check</a> -->
       </div>
       <div class="hold" style="width:150px; max-height:200px; display:inline-block; vertical-align: top; padding-top:50px">
@@ -132,6 +198,7 @@ catch(err) {
         $(".blur").fadeOut(1000);
         $(".container2").scrollTop(85);
         $(".toggle").click();
+        $(".btn.draw-border").click();
       } 
       function disForm() {
         event.preventDefault();
@@ -209,5 +276,35 @@ $(document).ready(function () {
     <a class="button" href="#">OK</a>
   </div>
 </div>
+<section id="counter-stats" class="wow fadeInRight" data-wow-duration="1.4s">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-lg-3 stats">
+				<div class="counting" data-count="{{cases}}">0</div>
+				<h5 style="color: #FEFAD4;">Confirmed</h5>
+			</div>
+
+			<div class="col-lg-3 stats">
+				<div class="counting" data-count="{{recovery}}">0</div>
+				<h5 style="color:#4AB19D;">Recovered</h5>
+			</div>
+
+			<div class="col-lg-3 stats">
+				<div class="counting" data-count="{{deaths}}">0</div>
+				<h5 style="color:#F1828D;">Dead</h5>
+      </div>
+      <!-- <div class="col-lg-3 stats">
+				<h5 style="color:white; font-size: 12px; padding-top: 10px;">#flatten_the_curve</h5>
+			</div> -->
+
+		</div>
+		<!-- end row -->
+	</div>
+	<!-- end container -->
+
+</section>
+
+<!-- end cont stats -->
 </body>
 </html>
