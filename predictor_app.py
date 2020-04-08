@@ -42,11 +42,17 @@ def print_piped():
 
 @app.route("/", methods=["GET"])
 def predict():
+    # r = requests.get('https://api.rootnet.in/covid19-in/stats/latest')
+    # curr=r.json()
+    # cases=curr['data']['summary']['total']
+    # recovery=curr['data']['summary']['discharged']
+    # deaths=curr['data']['summary']['deaths']
 
     if(request.args):
         x_input, predictions = make_prediction(request.args['chat_in'])
         doc = nlp(request.args['chat_in']) 
-        sub_tok = [tok.text for tok in doc if (tok.dep_=="nsubj" or tok.dep_ == "compound" or tok.dep_ == "dobj" or tok.dep_=="pobj") ]
+        # print(str(request.args['chat_in']),[tok.dep_ for tok in doc])
+        sub_tok = [tok.text for tok in doc if (tok.dep_=="nsubj" or tok.dep_=="psubj" or tok.dep_ == "compound" or tok.dep_ == "dobj" or tok.dep_=="pobj") ]
         sub_tokk = [x for x in sub_tok if isinstance(x, str)] # no integers from this point on
         sub_toks= [x for x in sub_tok if not hasNumbers(x)]
         sub_toks=list( dict.fromkeys(sub_toks) )
@@ -63,14 +69,15 @@ def predict():
             score=0
         queri=""
         querf=""
-        gurl="https://toolbox.google.com/factcheck/explorer/search"
+        # gurl="https://toolbox.google.com/factcheck/explorer/search"
         if len(sub_toks)!=0:
-            gurl="https://toolbox.google.com/factcheck/explorer/search/"+str("%20".join(sub_toks))+";hl=en"
+            # gurl="https://toolbox.google.com/factcheck/explorer/search/"+str("%20".join(sub_toks))+";hl=en"
+            gurl=str(" ".join(sub_toks[-3:]))
             queri="{@keyword@:@"+str(sub_toks[0])+"@,@geo@:@IN@,@time@:@today 12-m@}"
             querf=",".join(sub_toks)
             
             if len(sub_toks)>1:
-                for toki in sub_toks[1:]:
+                for toki in sub_toks[-3:]:
                     querii="{@keyword@:@"+toki+"@,@geo@:@IN@,@time@:@today 12-m@}"
                     queri=queri+","+querii
 
@@ -80,7 +87,8 @@ def predict():
                                      url=str(queri),
                                      gurl=gurl,
                                      score=score,
-                                     prediction=predictions)
+                                     prediction=predictions
+                                        )
     else: 
 
         x_input, predictions = make_prediction('')
