@@ -111,20 +111,22 @@ catch(err) {
          * See instructions for running APIs Explorer code samples locally:
          * https://developers.google.com/explorer-help/guides/code_samples#javascript
          */
-         var mountains = [];
+         var dataTable = [];
          function execute() {
           return gapi.client.factchecktools.claims.search({
             "query": "{{gurl}}"
           })
               .then(function(response) {
                       // Handle the results here (response.result has the parsed body).
+                      dataTable=[];
                       for(var i = 0; i < response.result['claims'].length; i++) {                    
-                      mountains.push({"Claim":response.result['claims'][i].text,"Score":response.result['claims'][i]['claimReview'][0]["textualRating"]=="Pants on Fire"?"Lie":response.result['claims'][i]['claimReview'][0]["textualRating"]});
+                      dataTable.push({"Claim":response.result['claims'][i].text,"Score":response.result['claims'][i]['claimReview'][0]["textualRating"]=="Pants on Fire"?"Lie":response.result['claims'][i]['claimReview'][0]["textualRating"]});
                       }
                       let table = document.querySelector("table");
-                      let data = Object.keys(mountains[0]);
+                      table.innerHTML="";
+                      let data = Object.keys(dataTable[0]);
                       generateTableHead(table, data);
-                      generateTable(table, mountains);
+                      generateTable(table, dataTable);
                     },
                     function(err) { console.error("Execute error", err); });
         }
