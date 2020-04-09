@@ -411,6 +411,13 @@ body{
   /* [class*="col-"] {
     width: 100%;
   } */
+  h5{
+    max-width: 70px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
   .toggle:checked + .lbl-toggle + .collapsible-content {
     max-height: 350px;
     overflow: auto;
@@ -451,13 +458,7 @@ body{
     padding: 0 0 !important;
 }
 }
-h5{
-  max-width: 70px;
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
+
 .lbl-toggle {
   font-size: ""!important;
 }
