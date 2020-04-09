@@ -3,12 +3,13 @@ from flask import request, Flask, Response, render_template
 from predictor_api import make_prediction
 from flask import jsonify
 import spacy
+import en_core_web_sm
 import requests 
 import re
 
 URL="https://openpagerank.com/api/v1.0/getPageRank"
-nlp = spacy.load("static/models/en_core_web_sm-2.2.5")
-
+# nlp = spacy.load("static/models/en_core_web_sm-2.2.5")
+nlp = en_core_web_sm.load()
 app = flask.Flask(__name__)
 
 def send_domains_to_OPR(domains_to_check):
