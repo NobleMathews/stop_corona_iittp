@@ -580,7 +580,7 @@ body{
   position: absolute;
   top: calc(5% - 24px);
   left: 0;
-  width: 150px;
+  /* max-width: 40%; */
   text-align: center;
   display: flex;
 }
