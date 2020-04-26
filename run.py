@@ -75,6 +75,7 @@ def predict():
         queri=""
         querf=""
         # gurl="https://toolbox.google.com/factcheck/explorer/search"
+        gurl=""
         if len(sub_toks)!=0:
             # gurl="https://toolbox.google.com/factcheck/explorer/search/"+str("%20".join(sub_toks))+";hl=en"
             gurl=str(" ".join(sub_toks[-3:]))
