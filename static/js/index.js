@@ -43,9 +43,9 @@ $.getJSON('https://api.rootnet.in/covid19-in/stats/latest', function(curr){
   // count.push(curr['data']['summary']['total']);
   // count.push(curr['data']['summary']['discharged']);
   // count.push(curr['data']['summary']['deaths']);
-  count.push(curr['data']['unofficial-summary']['total']);
-  count.push(curr['data']['unofficial-summary']['recovered']);
-  count.push(curr['data']['unofficial-summary']['deaths']);
+  count.push(curr['data']['unofficial-summary'][0]['total']);
+  count.push(curr['data']['unofficial-summary'][0]['recovered']);
+  count.push(curr['data']['unofficial-summary'][0]['deaths']);
   let sl=0;
 $('.counting').each(function() {
   var $this = $(this),
